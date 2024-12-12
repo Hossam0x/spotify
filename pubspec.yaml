@@ -4,30 +4,25 @@ description: "A new Flutter project."
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-
 version: 1.0.0+1
 
 environment:
   sdk: ^3.5.0
 
-
 dependencies:
+  cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
-
-
-  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.16
 
 dev_dependencies:
+
+  flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
 
-
-  flutter_lints: ^4.0.0
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter packages.
 flutter:
 
@@ -41,17 +36,16 @@ flutter:
   fonts:
     - family: Satoshi
       fonts:
-        - asset: fonts/Satoshi-Regular.ttf
-          weight: 400 # Regular
-        - asset: fonts/Satoshi-Light.ttf
-          weight: 300 # Light
-        - asset: fonts/Satoshi-Medium.ttf
-          weight: 500 # Medium
-        - asset: fonts/Satoshi-Bold.ttf
-          weight: 700 # Bold
-        - asset: fonts/Satoshi-Black.ttf
-          weight: 900 # Black
-        - asset: fonts/Satoshi-Italic.ttf
+        - asset: assets/fonts/Satoshi-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Satoshi-Bold.ttf
+          weight: 600
+        - asset: assets/fonts/Satoshi-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Satoshi-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Satoshi-Light.ttf
+          weight: 300
           style: italic
   #   - family: Trajan Pro
   #     fonts:
