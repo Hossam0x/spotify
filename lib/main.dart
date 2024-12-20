@@ -25,7 +25,7 @@ void main() async {
   runApp(const Spotify());
 }
 
-class Spotify extends StatelessWidget {
+class Spotify extends StatelessWidget {     
   const Spotify({super.key});
 
   @override
