@@ -6,6 +6,9 @@ class SongEntiy {
   final num duration;
   final Timestamp releaseDate;
   final String? coverUrl ;
+  final String? songUrl ;
+  final bool isFavorite ;
+  final String songId ;
 
   SongEntiy({
     required this.title,
@@ -13,6 +16,9 @@ class SongEntiy {
     required this.duration,
     required this.releaseDate,
     this.coverUrl,
+    this.songUrl,
+    required this.isFavorite,
+    required this.songId,
   });
 
   

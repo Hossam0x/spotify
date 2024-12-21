@@ -4,14 +4,18 @@ import 'package:spotify/presentation/auth/pages/signup_or_signin.dart';
 
 class BasicAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
+  final Widget? action ;
   final bool hideBack;
-  const BasicAppbar({super.key, this.title, this.hideBack = false});
+  const BasicAppbar({super.key, this.title, this.hideBack = false , this.action});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
         centerTitle: true,
         title: title ?? const Text(""),
+        actions: [
+          action ?? Container()
+        ],
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: hideBack

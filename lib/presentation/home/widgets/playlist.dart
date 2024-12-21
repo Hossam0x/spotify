@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify/common/helper/is_dark_mode.dart';
+import 'package:spotify/common/widgets/favorite_button/favorite_button.dart';
 import 'package:spotify/core/configs/app_colors.dart';
 import 'package:spotify/domain/entities/song/song.dart';
 import 'package:spotify/presentation/home/bloc/playList_cubit.dart';
 import 'package:spotify/presentation/home/bloc/playList_state.dart';
+import 'package:spotify/presentation/song_player/pages/song_player.dart';
 
 class Playlist extends StatelessWidget {
   const Playlist({super.key});
@@ -44,7 +46,7 @@ class Playlist extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   _songs(state.songs),
@@ -65,58 +67,66 @@ class Playlist extends StatelessWidget {
       child: ListView.separated(
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    height: 45,
-                    width: 45,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: context.isDarkMode
-                          ? AppColors.darkgrey
-                          : const Color(0xffE6E6E6),
-                    ),
-                    child: Icon(
-                      Icons.play_arrow_rounded,
-                      color: context.isDarkMode
-                          ? const Color(0xff959595)
-                          : Color(0xff555555),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        songs[index].title,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => SongPlayerPage(
+                            songEntity: songs[index],
+                          )));
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      height: 45,
+                      width: 45,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: context.isDarkMode
+                            ? AppColors.darkgrey
+                            : const Color(0xffE6E6E6),
                       ),
-                      const SizedBox(
-                        height: 5,
+                      child: Icon(
+                        Icons.play_arrow_rounded,
+                        color: context.isDarkMode
+                            ? const Color(0xff959595)
+                            : const Color(0xff555555),
                       ),
-                      Text(songs[index].artist)
-                    ],
-                  )
-                ],
-              ),
-              Row(
-                children: [
-                  Text(songs[index].duration.toString().replaceAll('.', ':')),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.favorite_border_rounded))
-                ],
-              )
-            ],
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          songs[index].title,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(songs[index].artist)
+                      ],
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(songs[index].duration.toString().replaceAll('.', ':')),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    FavoriteButton(songEntiy: songs[index])
+                  ],
+                )
+              ],
+            ),
           );
         },
         separatorBuilder: (context, index) => const SizedBox(
